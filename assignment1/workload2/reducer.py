@@ -33,10 +33,9 @@ def reducer():
 
 
     output_data = []
-    print(data_for_each_id[5])
     for i in range(len(data_for_each_id)):
         if len(data_for_each_id[i]) >= 2:
-            that_id = data_for_each_id[i]
+            that_id = sorted(data_for_each_id[i], key=lambda s:s[1])
             init_like = int(that_id[0][3])
             second_like = int(that_id[1][3])
             init_dislike = int(that_id[0][2])
