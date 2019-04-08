@@ -15,7 +15,8 @@ def mapper():
         if video_id == "video_id":
             continue
 
-        print("{}\t{}\t{}\t{}\t{}".format(video_id+","+country, trending_date, likes, dislikes, category))
+        idandcountry = video_id+","+country
+        print("{}\t{}\t{}\t{}\t{}".format(idandcountry, trending_date, likes, dislikes, category))
 
 
 if __name__ == '__main__':

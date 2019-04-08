@@ -44,9 +44,10 @@ def reducer():
         if (second_dislike - init_dislike) > (second_like - init_like):
             gap = (second_dislike - init_dislike) - (second_like - init_like)
             if gap > 0:
-                idandcountry = key.split(",")
+                id = key.split(",")[0]
+                country = key.split(",")[1]
 
-                each = [idandcountry[0], gap, data_for_each_id[key][1], idandcountrycd[1]]
+                each = [id, gap, data_for_each_id[key][1], country]
                 dislikes_growth.append(each)
 
     output = ""
