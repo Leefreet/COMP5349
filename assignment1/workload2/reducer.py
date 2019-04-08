@@ -13,11 +13,11 @@ def read_map_output(file):
 def reducer():
     data_for_each_id = {}
 
-    for video_id, trending_dates, likes, dislikes, country, category in read_map_output(sys.stdin):
-        if "video_id" == video_id:
+    for video_id_country, trending_dates, likes, dislikes, category in read_map_output(sys.stdin):
+        if "video_id,country" == video_id_country:
             continue
 
-        key = tuple((video_id, country))
+        key = video_id_country
 
         if key not in data_for_each_id.keys():
             data_for_each_id[key] = [[], ]
@@ -44,7 +44,9 @@ def reducer():
         if (second_dislike - init_dislike) > (second_like - init_like):
             gap = (second_dislike - init_dislike) - (second_like - init_like)
             if gap > 0:
-                each = [key[0], gap, data_for_each_id[key][1], key[1]]
+                idandcountry = key.split(",")
+
+                each = [idandcountry[0], gap, data_for_each_id[key][1], idandcountrycd[1]]
                 dislikes_growth.append(each)
 
     output = ""
