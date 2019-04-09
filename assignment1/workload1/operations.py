@@ -73,3 +73,16 @@ def remove_id(pair):
     t0, t1 = pair[0], pair[1]
     new_t0 = t0[0]
     return (new_t0, t1)
+
+
+def to_string(pair):
+    """
+    change output to requried format
+    :param pair:
+    :return: a string in form of "category: averagetrending"
+    """
+    res_str = ""
+    res_str = pair[0]+": "+str(pair[1])
+    return res_str
+
+

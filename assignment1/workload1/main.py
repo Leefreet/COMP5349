@@ -7,9 +7,9 @@ if __name__ == '__main__':
     sc = SparkContext(appName="Trending-Category Correlation")
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", help="the input path",
-                        default='~/COMP5349/assignment1/')
+                        default='file:///home/hadoop/COMP5349/assignment1/')
     parser.add_argument("--output", help="the output path",
-                        default='~/COMP5349/out/')
+                        default='file:///home/hadoop/COMP5349/out/')
     args = parser.parse_args()
     input_path = args.input
     output_path = args.output
@@ -21,5 +21,5 @@ if __name__ == '__main__':
     data = valid.reduceByKey(countries).map(get_length)
 
     categoryTrendingAverage = data.map(remove_id).aggregateByKey((0.0, 0.0), id_country_number, merge_numbers, 1).map(get_average_trending)
-    categoryTrendingAverage.saveAsTextFile(output_path)
+    categoryTrendingAverage.map(to_string).saveAsTextFile(output_path)
 
